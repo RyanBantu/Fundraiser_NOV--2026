@@ -12,14 +12,14 @@ function Steam({ x, y }: { x: number; y: number }) {
   );
 }
 
-function Plate() {
+function Plate({ potatoes = true }: { potatoes?: boolean }) {
   return (
     <g>
       <ellipse cx={200} cy={222} rx={170} ry={46} fill="#2a1e16" opacity={0.12} />
       <ellipse cx={200} cy={200} rx={170} ry={72} fill="#fffdf8" stroke="#e6d8bf" strokeWidth={3} />
       <ellipse cx={200} cy={198} rx={128} ry={52} fill="#f7efe0" />
       {/* potatoes */}
-      {[
+      {potatoes && [
         [262, 196, 30, 22, -12],
         [292, 178, 26, 20, 18],
         [236, 214, 26, 18, 8],
@@ -32,8 +32,8 @@ function Plate() {
           <circle cx={cx + rx * 0.35} cy={cy + ry * 0.2} r={3} fill="#b8792a" />
         </g>
       ))}
-      {/* chicken leg */}
-      <g transform="rotate(-18 160 190)">
+      {/* chicken leg (centred and a little larger when it's on its own) */}
+      <g transform={potatoes ? "rotate(-18 160 190)" : "translate(-30 -30) scale(1.15) rotate(-18 160 190)"}>
         <rect x={196} y={182} width={46} height={14} rx={7} fill="#f3e6cf" />
         <circle cx={244} cy={182} r={10} fill="#f3e6cf" />
         <circle cx={246} cy={196} r={10} fill="#f3e6cf" />
@@ -98,6 +98,17 @@ export function FoodArt({ id, className }: { id: ItemId; className?: string }) {
   return (
     <svg viewBox="0 0 400 300" className={className} role="img" aria-label={`Illustration of ${id}`}>
       {id === "plate" && <Plate />}
+      {id === "extra" && (
+        <g>
+          <Plate potatoes={false} />
+          <g transform="translate(296 92)">
+            <circle r={34} fill="#c8552d" />
+            <text y={12} textAnchor="middle" fontSize={34} fontWeight={800} fill="#fff" fontFamily="sans-serif">
+              +1
+            </text>
+          </g>
+        </g>
+      )}
       {id === "drink" && <Glass />}
       {id === "combo" && (
         <g>

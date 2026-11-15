@@ -16,7 +16,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Fund Raiser",
+  title: "The Bantu's Stall",
   description: "Food and 3D-printed pendants — every rupee goes to the fund.",
 };
 

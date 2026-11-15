@@ -1,4 +1,4 @@
-export type ItemId = "plate" | "combo" | "drink" | "cross" | "fish";
+export type ItemId = "plate" | "extra" | "combo" | "drink" | "cross" | "fish";
 export type ItemGroup = "Food" | "Combo" | "Drink" | "3D print";
 export type PayMethod = "cash" | "upi";
 
@@ -24,6 +24,15 @@ export const MENU: readonly MenuItem[] = [
     group: "Food",
     image: "/img/food-plate.jpg",
     blurb: "Flame-grilled chicken with golden roast potatoes.",
+  },
+  {
+    id: "extra",
+    name: "Extra chicken",
+    short: "Extra chicken",
+    price: 25,
+    group: "Food",
+    image: "/img/food-extra.jpg",
+    blurb: "Add another piece of grilled chicken to your plate.",
   },
   {
     id: "combo",
@@ -78,7 +87,7 @@ export const PENDANT_ITEMS = MENU.filter((m) => m.group === "3D print");
 export const COMBO_SAVING =
   (getItem("plate")!.price + getItem("drink")!.price) - getItem("combo")!.price;
 
-export const STALL_NAME = "Fund Raiser";
+export const STALL_NAME = "The Bantu's Stall";
 
 export function rupees(n: number): string {
   return `₹${n.toLocaleString("en-IN")}`;

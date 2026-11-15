@@ -1,4 +1,4 @@
-# Fund Raiser — stall display + sales tracker
+# The Bantu's Stall — stall display + sales tracker
 
 Next.js 15 (App Router, TypeScript, Tailwind) + MongoDB for a food and 3D-printed pendant stall.
 

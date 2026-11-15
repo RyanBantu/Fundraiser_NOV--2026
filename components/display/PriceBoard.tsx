@@ -7,7 +7,7 @@ function Row({ item, photo }: { item: MenuItem; photo?: boolean }) {
   const combo = item.id === "combo";
   return (
     <li
-      className={`flex items-center gap-[1vw] rounded-[1.4vh] px-[1vw] py-[1.25vh] ${
+      className={`flex items-center gap-[1vw] rounded-[1.4vh] px-[1vw] py-[0.95vh] ${
         combo ? "bg-gold/15 ring-[0.25vh] ring-gold" : ""
       }`}
     >
@@ -42,14 +42,14 @@ export function PriceBoard({ photos }: { photos: PhotoMap }) {
       <h2 className="font-display text-[4.2vh] leading-none font-semibold text-gold">Price board</h2>
       <p className="mt-[0.8vh] text-[1.6vh] text-cream/60">Every rupee goes to the fund.</p>
 
-      <h3 className="mt-[2.6vh] mb-[0.6vh] text-[1.5vh] font-bold tracking-[0.3em] text-cream/55 uppercase">Food &amp; drinks</h3>
+      <h3 className="mt-[2vh] mb-[0.4vh] text-[1.5vh] font-bold tracking-[0.3em] text-cream/55 uppercase">Food &amp; drinks</h3>
       <ul className="space-y-[0.4vh]">
         {FOOD_ITEMS.map((item) => (
           <Row key={item.id} item={item} />
         ))}
       </ul>
 
-      <h3 className="mt-[2.4vh] mb-[0.6vh] text-[1.5vh] font-bold tracking-[0.3em] text-cream/55 uppercase">3D-printed pendants</h3>
+      <h3 className="mt-[1.8vh] mb-[0.4vh] text-[1.5vh] font-bold tracking-[0.3em] text-cream/55 uppercase">3D-printed pendants</h3>
       <ul className="space-y-[0.4vh]">
         {PENDANT_ITEMS.map((item) => (
           <Row key={item.id} item={item} photo={photos[item.id]} />
@@ -57,9 +57,9 @@ export function PriceBoard({ photos }: { photos: PhotoMap }) {
       </ul>
 
       {/* models strip: the cross, worn */}
-      <div className="mt-[1.6vh] flex min-h-0 flex-1 items-end justify-center gap-[0.4vw] overflow-hidden rounded-[1.6vh] bg-board-2">
+      <div className="mt-[1.4vh] flex min-h-[8vh] flex-1 items-end justify-center gap-[0.4vw] overflow-hidden rounded-[1.6vh] bg-board-2">
         {CROSS_MODELS.map((m) => (
-          <ModelArt key={m.name} look={m} className="h-full max-h-[16vh] min-w-0" glow={false} />
+          <ModelArt key={m.name} look={m} className="h-full max-h-[15vh] min-w-0" glow={false} />
         ))}
       </div>
 

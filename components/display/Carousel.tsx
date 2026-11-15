@@ -29,7 +29,7 @@ export function Carousel({ photos }: { photos: PhotoMap }) {
             <div key={item.id} className="relative h-full w-full shrink-0" aria-hidden={i !== index}>
               {isPendant ? (
                 <div className="flex h-full">
-                  <ItemVisual item={item} hasPhoto={photos[item.id]} sizes="35vw" className="h-full w-[46%]" priority={i === 0} />
+                  <ItemVisual item={item} hasPhoto={photos[item.id]} sizes="35vw" className="h-full w-[46%]" priority />
                   {/* Models wearing the pendant */}
                   <div className="relative flex h-full flex-1 flex-col bg-gradient-to-b from-gold-soft to-paper px-[1.4vw] pt-[2.4vh] pr-[17vh]">
                     <p className="font-sans text-[1.6vh] font-bold tracking-[0.3em] text-gold-deep uppercase">As worn by</p>
@@ -49,7 +49,7 @@ export function Carousel({ photos }: { photos: PhotoMap }) {
                   </div>
                 </div>
               ) : (
-                <ItemVisual item={item} hasPhoto={photos[item.id]} sizes="60vw" className="h-full w-full" priority={i === 0} />
+                <ItemVisual item={item} hasPhoto={photos[item.id]} sizes="60vw" className="h-full w-full" priority />
               )}
 
               {/* caption */}

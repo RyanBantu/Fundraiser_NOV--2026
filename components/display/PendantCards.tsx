@@ -19,6 +19,7 @@ export function PendantCards({ photos }: { photos: PhotoMap }) {
                 item={item}
                 hasPhoto={photos[item.id]}
                 sizes="15vw"
+                priority
                 className="h-full w-full"
                 imgClassName={`pendant-zoom ${i === 1 ? "delay-3s" : ""}`}
               />

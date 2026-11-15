@@ -175,7 +175,7 @@ export function Tracker({ photos }: { photos: PhotoMap }) {
         </div>
 
         {/* Tap cards */}
-        <section className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
+        <section className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-6">
           {MENU.map((item, i) => (
             <button
               key={`${item.id}-${flash[item.id] ?? 0}`}
@@ -183,7 +183,7 @@ export function Tracker({ photos }: { photos: PhotoMap }) {
               onClick={() => tap(item.id)}
               className={`group relative flex items-center gap-3 overflow-hidden rounded-2xl bg-white p-2.5 text-left shadow-sm ring-1 ring-line transition active:scale-[0.97] sm:flex-col sm:items-stretch sm:p-3 ${
                 flash[item.id] ? "tap-flash" : ""
-              } ${i === MENU.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
+              } ${MENU.length % 2 === 1 && i === MENU.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
             >
               <ItemVisual
                 item={item}
