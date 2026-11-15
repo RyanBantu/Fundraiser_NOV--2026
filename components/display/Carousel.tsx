@@ -70,7 +70,7 @@ export function Carousel({ photos }: { photos: PhotoMap }) {
                 <div className="flex h-[14vh] w-[14vh] flex-col items-center justify-center rounded-full bg-gold text-board shadow-[0_1vh_2.4vh_rgb(42_30_22/0.35)] ring-[0.6vh] ring-cream/70">
                   <span className="font-display text-[5.4vh] leading-none font-bold">{rupees(item.price)}</span>
                 </div>
-                {item.id === "combo" && (
+                {item.id === "combo" && COMBO_SAVING > 0 && (
                   <span className="-mt-[1.4vh] rounded-full bg-ember px-[1.2vh] py-[0.5vh] text-[1.7vh] font-bold text-cream shadow">
                     Save {rupees(COMBO_SAVING)}
                   </span>

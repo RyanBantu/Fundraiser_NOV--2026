@@ -22,7 +22,7 @@ function Row({ item, photo }: { item: MenuItem; photo?: boolean }) {
       )}
       <span className="min-w-0">
         <span className="block font-display text-[2.55vh] leading-tight text-cream">{item.name}</span>
-        {combo && (
+        {combo && COMBO_SAVING > 0 && (
           <span className="mt-[0.4vh] inline-block rounded-full bg-ember px-[0.9vh] py-[0.2vh] text-[1.45vh] font-bold text-cream">
             Save {rupees(COMBO_SAVING)}
           </span>

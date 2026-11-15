@@ -20,7 +20,7 @@ export const MENU: readonly MenuItem[] = [
     id: "plate",
     name: "Chicken with potatoes",
     short: "Chicken plate",
-    price: 79,
+    price: 69,
     group: "Food",
     image: "/img/food-plate.jpg",
     blurb: "Flame-grilled chicken with golden roast potatoes.",
@@ -38,7 +38,7 @@ export const MENU: readonly MenuItem[] = [
     id: "combo",
     name: "Chicken + potatoes + cool drink",
     short: "Combo",
-    price: 109,
+    price: 89,
     group: "Combo",
     image: "/img/food-combo.jpg",
     blurb: "The full plate plus an ice-cold drink.",
@@ -47,7 +47,7 @@ export const MENU: readonly MenuItem[] = [
     id: "drink",
     name: "Cool drink (glass)",
     short: "Cool drink",
-    price: 35,
+    price: 25,
     group: "Drink",
     image: "/img/food-drink.jpg",
     blurb: "A tall glass, poured cold.",
@@ -83,7 +83,7 @@ export function getItem(id: string): MenuItem | undefined {
 export const FOOD_ITEMS = MENU.filter((m) => m.group !== "3D print");
 export const PENDANT_ITEMS = MENU.filter((m) => m.group === "3D print");
 
-/** How much the combo saves versus buying the plate and drink separately. */
+/** How much the combo saves versus buying the plate and drink separately (badge hidden if ≤ 0). */
 export const COMBO_SAVING =
   (getItem("plate")!.price + getItem("drink")!.price) - getItem("combo")!.price;
 
