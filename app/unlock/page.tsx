@@ -50,24 +50,25 @@ export default function UnlockPage() {
       }
       if (!/^\d$/.test(k)) return;
       setError(null);
-      setPin((p) => {
-        if (p.length >= PIN_LENGTH) return p;
-        const next = p + k;
-        if (next.length === PIN_LENGTH) void submit(next);
-        return next;
-      });
+      setPin((p) => (p.length >= PIN_LENGTH ? p : p + k));
     },
-    [busy, submit],
+    [busy],
   );
+
+  const ready = pin.length === PIN_LENGTH && !busy;
+  const enter = useCallback(() => {
+    if (ready) void submit(pin);
+  }, [ready, pin, submit]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (/^\d$/.test(e.key)) press(e.key);
       else if (e.key === "Backspace") press("⌫");
+      else if (e.key === "Enter") enter();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [press]);
+  }, [press, enter]);
 
   return (
     <main className="flex min-h-dvh flex-col items-center justify-center bg-cream px-6 py-10">
@@ -79,7 +80,7 @@ export default function UnlockPage() {
           </svg>
         </span>
         <h1 className="mt-4 font-display text-3xl font-bold">{STALL_NAME}</h1>
-        <p className="mt-1 text-sm text-muted">Enter the PIN to open the tracker</p>
+        <p className="mt-1 text-sm text-muted">Enter the PIN, then tap Enter</p>
 
         <div key={shake} className={`mt-7 flex justify-center gap-4 ${shake ? "pin-shake" : ""}`} aria-live="polite">
           {Array.from({ length: PIN_LENGTH }, (_, i) => (
@@ -113,6 +114,15 @@ export default function UnlockPage() {
             ),
           )}
         </div>
+
+        <button
+          type="button"
+          onClick={enter}
+          disabled={!ready}
+          className="mt-5 h-14 w-full rounded-2xl bg-board text-lg font-bold text-cream shadow-md transition active:scale-[0.98] disabled:bg-line disabled:text-muted disabled:shadow-none"
+        >
+          {busy ? "Checking…" : "Enter →"}
+        </button>
       </div>
     </main>
   );
