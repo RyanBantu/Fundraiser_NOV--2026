@@ -1,26 +1,128 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #fbf5ea;
+  --paper: #f4ead7;
+  --ink: #2a1e16;
+  --muted: #7a6656;
+  --line: #e6d8bf;
+  --gold: #d9a441;
+  --gold-deep: #b7832a;
+  --gold-soft: #f6e6c3;
+  --ember: #c8552d;
+  --board: #1e1814;
+  --board-2: #2a221c;
+  --board-line: #3d3229;
+  --leaf: #3f7d4e;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--cream);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-soft: var(--gold-soft);
+  --color-ember: var(--ember);
+  --color-board: var(--board);
+  --color-board-2: var(--board-2);
+  --color-board-line: var(--board-line);
+  --color-leaf: var(--leaf);
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  background: var(--cream);
+  color: var(--ink);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- animations ---------- */
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgb(200 85 45 / 0.55); }
+  70% { box-shadow: 0 0 0 0.9vh rgb(200 85 45 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(200 85 45 / 0); }
+}
+.pulse-dot { animation: pulse-dot 1.6s ease-out infinite; }
+
+@keyframes progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.progress-bar { transform-origin: left; animation: progress linear forwards; }
+
+/* Pendant cards take turns popping: 6s loop, second card offset by 3s. */
+@keyframes pendant-pop {
+  0%, 52%, 100% { transform: translateY(0) scale(1); box-shadow: 0 0.4vh 1.2vh rgb(42 30 22 / 0.08); }
+  10%, 42% { transform: translateY(-1.2vh) scale(1.035); box-shadow: 0 2.4vh 4vh rgb(42 30 22 / 0.22); }
+}
+@keyframes pendant-zoom {
+  0%, 52%, 100% { transform: scale(1); }
+  10%, 42% { transform: scale(1.14); }
+}
+@keyframes pendant-glow {
+  0%, 52%, 100% { opacity: 0; }
+  10%, 42% { opacity: 1; }
+}
+.pendant-pop { animation: pendant-pop 6s ease-in-out infinite; }
+.pendant-zoom { animation: pendant-zoom 6s ease-in-out infinite; }
+.pendant-glow { animation: pendant-glow 6s ease-in-out infinite; }
+.delay-3s { animation-delay: 3s; }
+
+/* Gentle sway for the pendant on a model's chain. */
+@keyframes sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+.sway { transform-box: fill-box; transform-origin: 50% 0%; animation: sway 3.2s ease-in-out infinite; }
+
+@keyframes shine {
+  0%, 60%, 100% { opacity: 0; }
+  70% { opacity: 0.9; }
+}
+.shine { animation: shine 3.2s ease-in-out infinite; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(1.2vh); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fade-up 0.7s ease-out both; }
+
+@keyframes tap-flash {
+  0% { box-shadow: 0 0 0 0 rgb(217 164 65 / 0.9); background-color: var(--gold-soft); transform: scale(0.97); }
+  100% { box-shadow: 0 0 0 14px rgb(217 164 65 / 0); transform: scale(1); }
+}
+.tap-flash { animation: tap-flash 0.45s ease-out; }
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translate(-50%, 12px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+.toast-in { animation: toast-in 0.2s ease-out both; }
+
+@keyframes steam {
+  0% { opacity: 0; transform: translateY(0); }
+  30% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-14px); }
+}
+.steam { animation: steam 2.4s ease-out infinite; }
+
+@keyframes pin-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+.pin-shake { animation: pin-shake 0.4s ease-in-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pendant-pop, .pendant-zoom, .pendant-glow, .sway, .shine, .steam, .pulse-dot { animation: none; }
 }
